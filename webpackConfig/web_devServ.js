@@ -28,7 +28,7 @@ module.exports = new Promise((resolve, reject) => {
     const backendHTTP = process.env.PROXY_BACKEND_FAILURE;
 
     const connectionTimeout = setTimeout(() => {
-        console.log(`WEBP. Connection failure. HTTP enforced.`);
+        console.log(`WEBP. Connection timeout. HTTP enforced.`);
         resolve(config(backendHTTP, false));
     }, 30000)
 
@@ -49,7 +49,7 @@ module.exports = new Promise((resolve, reject) => {
     }).on("error", (e) => {
         
         clearTimeout(connectionTimeout);
-        console.log(`WEBP. Connection failure. HTTP enforced.`)
+        console.log(`WEBP. Connection failure. HTTP enforced.`, e)
         resolve(config(backendHTTP, false));
 
     })
